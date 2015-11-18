@@ -9,6 +9,9 @@
 		.container p:first-child{
 			font-size: 300%;
 		}
+		resultado{
+			color: red;
+		}
 	</style>
   </head>
 
@@ -17,7 +20,7 @@
         <div class="row">
             <div class="col-lg-12 text-center" id="status">
                 <progress id="progress-bar" value="30" max="100"></progress>
-				<h1>...</h1>
+				<span></span>
 			</div>
 		</div>
 	</div>
@@ -26,10 +29,10 @@
   <script>
   $(function() {
   
-	var status = $('#status');
+	var status = $('#status span');
 	
 	showStatus = function(value){
-		status.append( $('p').text(value) );
+		status.prepend( `<p>${value}</p>` );
 	}
 	
 	load = function(time, doing){
@@ -41,10 +44,20 @@
 		);
 	}
 
+	showStatus("Esperando la conexión");
 	load(1000, function(){
-		showStatus("Done!");
-		load(1000, function(){
-			showStatus("Done rly!");
+		showStatus("Buscando en la base de datos");
+		load(800, function(){
+			showStatus("Comparando con los registros");
+			load(300, function(){
+				showStatus("Revisando traidas previas");
+				load(700, function(){
+					showStatus("Recompilando resultados");
+					load(100, function(){
+						showStatus("<resultado>Si</resultado>")
+					})
+				})
+			})
 		});
 	});
 	
