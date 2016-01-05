@@ -29,6 +29,7 @@
   <script>
   $(function() {
   
+  var resultado = "Si"
 	var status = $('#status span');
 	var params = {};
 	window.location.href.replace( 
@@ -40,6 +41,8 @@
 
 
   function traducirNombre(nombre){
+    if( nombre.toLowerCase() == "joaco")
+      resultado = "Nop";
     if( nombre )
       return decodeURIComponent(nombre).replace(/\+/g, " ");
     return 'yo';
@@ -70,7 +73,7 @@
 				load(700, function(){
 					showStatus("Recompilando resultados");
 					load(100, function(){
-						showStatus("<resultado>Si</resultado>")
+						showStatus(`<resultado>${resultado}</resultado>`);
 					})
 				})
 			})
